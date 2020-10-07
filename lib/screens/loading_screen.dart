@@ -24,18 +24,22 @@ class _LoadingScreenState extends State<LoadingScreen> {
       birthDate: '1976-10-18',
       birthTime: '13:15',
     ).getBirthChart();
-    print(
-        'Angolo di casa 1: ${birthChartData['houses'][1.toString()]['chartAngle']}');
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return DominantScreen(
-        birthChartData: birthChartData,
-      );
-    }));
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) {
+        return DominantScreen(
+          birthChartData: birthChartData,
+        );
+      }),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Loading birthchart data...'),
+      ),
       body: Center(
         child: SpinKitThreeBounce(
           color: Colors.white,

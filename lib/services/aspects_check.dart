@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 bool planetAngleConjunction(
     {@required birthChart,
-    @required PlanetName planet,
+    @required PlanetsNames planet,
     @required Angles angle}) {
   String stringPlanet = EnumToString.convertToString(planet);
   String stringAngle = EnumToString.convertToString(angle);
@@ -13,10 +13,9 @@ bool planetAngleConjunction(
   return ((angle1 - angle2).abs() <= kConjunction);
 }
 
-bool planetPlanetConjunction(
-    {@required birthChart,
-    @required PlanetName planet1,
-    @required PlanetName planet2}) {
+bool planetPlanetConjunction({@required birthChart,
+  @required PlanetsNames planet1,
+  @required PlanetsNames planet2}) {
   String _stringPlanet1 = EnumToString.convertToString(planet1);
   String _stringPlanet2 = EnumToString.convertToString(planet2);
   double angle1 = birthChart['planets'][_stringPlanet1]['chartAngle'];
@@ -25,24 +24,25 @@ bool planetPlanetConjunction(
 }
 
 bool angleInSign(
-    {@required birthChart, @required Angles angle, @required Sign sign}) {
+    {@required birthChart, @required Angles angle, @required Signs sign}) {
   String stringAngle = EnumToString.convertToString(angle);
   String stringSign = EnumToString.convertToString(sign);
   return (birthChart['angles'][stringAngle]['sign'] == stringSign);
 }
 
-bool planetInSign(
-    {@required birthChart, @required PlanetName planet, @required Sign sign}) {
+bool planetInSign({@required birthChart,
+  @required PlanetsNames planet,
+  @required Signs sign}) {
   String _stringPlanet = EnumToString.convertToString(planet);
   String _stringSign = EnumToString.convertToString(sign);
   return (birthChart['planets'][_stringPlanet]['sign'] == _stringSign);
 }
 
-bool stelliumInSign({@required birthChart, @required Sign sign}) {
+bool stelliumInSign({@required birthChart, @required Signs sign}) {
   String _stringSign = EnumToString.convertToString(sign);
   String _stringPlanet;
   int _planetsInSign = 0;
-  PlanetName.values.forEach((planet) {
+  PlanetsNames.values.forEach((planet) {
     _stringPlanet = EnumToString.convertToString(planet);
     if (birthChart['planets'][_stringPlanet]['sign'] == _stringSign) {
       _planetsInSign++;
@@ -62,10 +62,9 @@ House getBirthChartHouses({@required birthChart, @required int houseNr}) {
   return _house;
 }
 
-bool planetInHouse(
-    {@required birthChart,
-    @required PlanetName planet,
-    @required int houseNr}) {
+bool planetInHouse({@required birthChart,
+  @required PlanetsNames planet,
+  @required int houseNr}) {
   bool _planetInHouse;
   House _house = getBirthChartHouses(birthChart: birthChart, houseNr: houseNr);
   String _stringPlanet = EnumToString.convertToString(planet);

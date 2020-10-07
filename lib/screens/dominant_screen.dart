@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:dominanti_planetarie/services/dominants.dart';
 import 'package:dominanti_planetarie/services/constants.dart';
+import 'package:dominanti_planetarie/services/dominants.dart';
+import 'package:flutter/material.dart';
 
 class DominantScreen extends StatefulWidget {
   DominantScreen({this.birthChartData});
+
   final birthChartData;
 
   @override
@@ -22,7 +23,7 @@ class _DominantScreenState extends State<DominantScreen> {
         DominantsValue(birthChart: birthCartData).calculateDominants();
     // for (var planet in PlanetName) {
     //   print('La dominante di $planet è ${dominantsData[planet]}');
-    PlanetName.values.forEach((planet) {
+    PlanetsNames.values.forEach((planet) {
       print('La dominante di $planet è ${dominantsData[planet]}');
     });
   }

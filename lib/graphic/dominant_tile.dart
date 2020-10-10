@@ -8,18 +8,18 @@ import 'graphic_constants.dart';
 
 class DominantTile extends StatelessWidget {
   DominantTile(
-      {@required this.planetNameIndex,
+      {@required this.planet,
       @required this.dominantValue,
       @required this.maxDominantValue});
 
-  final int planetNameIndex;
+  final Planet planet;
   final int dominantValue;
   final double maxDominantValue;
 
   @override
   Widget build(BuildContext context) {
     return ReusableCard(
-      colour: Colors.black12,
+      colour: kTileBackgroundColor,
       cardChild: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -31,8 +31,8 @@ class DominantTile extends StatelessWidget {
               children: [
                 Expanded(
                   child: SvgPicture.asset(
-                    kSymbolsName[planetNameIndex],
-                    color: Color(mainColor),
+                    kSymbolsName[planet.symbol()],
+                    color: kSignColor,
                     matchTextDirection: true,
                   ),
                 ),
@@ -40,11 +40,7 @@ class DominantTile extends StatelessWidget {
                   child: Center(
                     child: Text(
                       '$dominantValue',
-                      style: TextStyle(
-                        fontSize: 60,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: kDominantNrStyle,
                     ),
                   ),
                 ),
@@ -59,12 +55,12 @@ class DominantTile extends StatelessWidget {
             ),
             child: LiquidLinearProgressIndicator(
               value: (dominantValue / maxDominantValue), // Defaults to 0.5.
-              valueColor: AlwaysStoppedAnimation(Color(
-                  0xFFFE6054)), // Defaults to the current Theme's accentColor.
-              backgroundColor: Color(
-                  0xFFFF773D), // Defaults to the current Theme's backgroundColor.
-              borderColor: Color(0xFFFE6054),
-              borderWidth: 2.0,
+              valueColor: AlwaysStoppedAnimation(
+                  kBarColor), // Defaults to the current Theme's accentColor.
+              backgroundColor:
+                  kBackgroundBarColor, // Defaults to the current Theme's backgroundColor.
+              borderColor: kBackgroundBarColor,
+              borderWidth: 0.0,
               borderRadius: 12.0,
               direction: Axis.horizontal,
               center: Text(''),

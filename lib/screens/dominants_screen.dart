@@ -1,3 +1,5 @@
+import 'package:dominanti_planetarie/graphic/graphic_constants.dart';
+import 'package:dominanti_planetarie/services/birth_chart.dart';
 import 'package:dominanti_planetarie/services/constants.dart';
 import 'package:dominanti_planetarie/services/dominants.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,32 +10,40 @@ import 'package:dominanti_planetarie/graphic/dominant_tile.dart';
 
 class DominantScreen extends StatefulWidget {
   DominantScreen({this.birthChartData});
-
   final birthChartData;
 
   @override
-  _DominantScreenState createState() => _DominantScreenState();
+  _DominantScreenState createState() => _DominantScreenState(birthChartData);
 }
 
 class _DominantScreenState extends State<DominantScreen> {
+  _DominantScreenState(this.birthChartData);
+  final birthChartData;
+  DominantsValue dominantsData = DominantsValue();
   @override
   void initState() {
     super.initState();
-    // updateUI(widget.birthChartData);
+    updateUI(widget.birthChartData);
   }
 
-  // void updateUI(dynamic birthCartData) {
-  //   var dominantsData =
-  //       DominantsValue(birthChart: birthCartData).calculateDominants();
-  //   // for (var planet in PlanetName) {
-  //   //   print('La dominante di $planet è ${dominantsData[planet]}');
-  //   PlanetsNames.values.forEach((planet) {
-  //     print('La dominante di $planet è ${dominantsData[planet]}');
-  //   });
-  // }
+  void updateUI(dynamic birthChartData) {
+    setState(() {
+      dominantsData = DominantsValue().calculateDominants(birthChartData);
+      // for (var planet in PlanetName) {
+      //   print('La dominante di $planet è ${dominantsData[planet]}');
+      kPlanetsNames.values.forEach((planet) {
+        print('La dominante di $planet è ${dominantsData[planet]}');
+      });
+    });
+  }
 
   Widget build(BuildContext context) {
+    var _dominantsPlanets = dominantsData.keys.toList();
+    print(_dominantsPlanets);
+    var _dominantsValues = dominantsData.values.toList();
+    print(_dominantsValues);
     return Scaffold(
+      backgroundColor: kPageBackgroundColor,
       appBar: AppBar(
         title: Text('Your planets dominant data'),
         centerTitle: true,
@@ -41,10 +51,9 @@ class _DominantScreenState extends State<DominantScreen> {
       body: StaggeredGridView.countBuilder(
         crossAxisCount: 4,
         itemCount: 10,
-        // itemCount: kPlanetsNames.values.length,
         itemBuilder: (BuildContext context, int index) => DominantTile(
-          planetNameIndex: index,
-          dominantValue: 10 + index,
+          planet: _dominantsPlanets[index],
+          dominantValue: _dominantsValues[index],
           maxDominantValue: 20.0,
         ),
         staggeredTileBuilder: (int index) => StaggeredTile.count(

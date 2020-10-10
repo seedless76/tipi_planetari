@@ -116,6 +116,10 @@ class Planet {
   bool isSlow() {
     return kPlanetsSlow.contains(name);
   }
+
+  String symbol() {
+    return kSymbolsName[name];
+  }
 }
 
 //Lista dei pianeti lenti
@@ -212,15 +216,15 @@ final Map<Signs, PlanetsOfSign> kPlanetsOfSigns = {
       secondaryDom: kPlanetsNames.jupiter)
 };
 
-const List<String> kSymbolsName = [
-  'lib/assets/Sun_symbol.svg',
-  'lib/assets/Moon_symbol.svg',
-  'lib/assets/Mercury_symbol.svg',
-  'lib/assets/Venus_symbol.svg',
-  'lib/assets/Mars_symbol.svg',
-  'lib/assets/Jupiter_symbol.svg',
-  'lib/assets/Saturn_symbol.svg',
-  'lib/assets/Uranus_symbol.svg',
-  'lib/assets/Neptune_symbol.svg',
-  'lib/assets/Pluto_symbol.svg',
-];
+const Map<String, String> kSymbolsName = {
+  'Sun: ': 'lib/assets/Sun_symbol.svg',
+  'Moon': 'lib/assets/Moon_symbol.svg',
+  'Mercury': 'lib/assets/Mercury_symbol.svg',
+  'Venus': 'lib/assets/Venus_symbol.svg',
+  'Mars': 'lib/assets/Mars_symbol.svg',
+  'Jupiter': 'lib/assets/Jupiter_symbol.svg',
+  'Saturn': 'lib/assets/Saturn_symbol.svg',
+  'Uranus': 'lib/assets/Uranus_symbol.svg',
+  'Neptune': 'lib/assets/Neptune_symbol.svg',
+  'Pluto': 'lib/assets/Pluto_symbol.svg',
+};

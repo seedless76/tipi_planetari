@@ -19,7 +19,7 @@ class DominantScreen extends StatefulWidget {
 class _DominantScreenState extends State<DominantScreen> {
   _DominantScreenState(this.birthChartData);
   final birthChartData;
-  DominantsValue dominantsData = DominantsValue();
+  var dominantsData = Dominants().calculate(birthChartData);
   @override
   void initState() {
     super.initState();
@@ -28,7 +28,7 @@ class _DominantScreenState extends State<DominantScreen> {
 
   void updateUI(dynamic birthChartData) {
     setState(() {
-      dominantsData = DominantsValue().calculateDominants(birthChartData);
+      dominantsData = Dominants().calculate(birthChartData);
       // for (var planet in PlanetName) {
       //   print('La dominante di $planet è ${dominantsData[planet]}');
       kPlanetsNames.values.forEach((planet) {

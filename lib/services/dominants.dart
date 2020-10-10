@@ -5,11 +5,11 @@ class DominantsValue {
   DominantsValue({this.birthChart});
 
   final birthChart;
-  Map<PlanetsNames, int> dominants;
+  Map<kPlanetsNames, int> dominants;
 
   Map calculateDominants() {
     var dominants = Map();
-    PlanetsNames.values.forEach((planet) {
+    kPlanetsNames.values.forEach((planet) {
       print('Computo $planet...');
       dominants[planet] =
           getDominantValue(birthChart: birthChart, dominantPlanet: planet);

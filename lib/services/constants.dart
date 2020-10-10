@@ -79,7 +79,7 @@ enum Signs {
   Aquarius,
   Pisces
 }
-enum PlanetsNames {
+enum kPlanetsNames {
   sun,
   moon,
   mercury,
@@ -105,7 +105,7 @@ enum Angles {
 class Planet {
   Planet(this.name);
 
-  final PlanetsNames name;
+  final kPlanetsNames name;
 
   bool isFast() {
     return kPlanetsFast.contains(name);
@@ -117,21 +117,21 @@ class Planet {
 }
 
 //Lista dei pianeti lenti
-final List<PlanetsNames> kPlanetsSlow = const [
-  PlanetsNames.jupiter,
-  PlanetsNames.saturn,
-  PlanetsNames.uranus,
-  PlanetsNames.neptune,
-  PlanetsNames.pluto,
+final List<kPlanetsNames> kPlanetsSlow = const [
+  kPlanetsNames.jupiter,
+  kPlanetsNames.saturn,
+  kPlanetsNames.uranus,
+  kPlanetsNames.neptune,
+  kPlanetsNames.pluto,
 ];
 
 //Lista dei pianeti veloci
-final List<PlanetsNames> kPlanetsFast = const [
-  PlanetsNames.sun,
-  PlanetsNames.moon,
-  PlanetsNames.mercury,
-  PlanetsNames.venus,
-  PlanetsNames.mars,
+final List<kPlanetsNames> kPlanetsFast = const [
+  kPlanetsNames.sun,
+  kPlanetsNames.moon,
+  kPlanetsNames.mercury,
+  kPlanetsNames.venus,
+  kPlanetsNames.mars,
 ];
 
 final List<int> kHousesName =
@@ -146,7 +146,7 @@ class House {
 class Dominant {
   Dominant({@required this.planet, @required this.value});
 
-  PlanetsNames planet;
+  kPlanetsNames planet;
   int value;
 }
 
@@ -156,56 +156,69 @@ class PlanetsOfSign {
       @required this.exaltation,
       @required this.secondaryDom});
 
-  PlanetsNames primaryDom;
-  PlanetsNames exaltation;
-  PlanetsNames secondaryDom;
+  kPlanetsNames primaryDom;
+  kPlanetsNames exaltation;
+  kPlanetsNames secondaryDom;
 }
 
 final Map<Signs, PlanetsOfSign> kPlanetsOfSigns = {
   Signs.Aries: PlanetsOfSign(
-      primaryDom: PlanetsNames.mars,
-      exaltation: PlanetsNames.sun,
-      secondaryDom: PlanetsNames.pluto),
+      primaryDom: kPlanetsNames.mars,
+      exaltation: kPlanetsNames.sun,
+      secondaryDom: kPlanetsNames.pluto),
   Signs.Taurus: PlanetsOfSign(
       primaryDom: null,
-      exaltation: PlanetsNames.jupiter,
-      secondaryDom: PlanetsNames.venus),
+      exaltation: kPlanetsNames.jupiter,
+      secondaryDom: kPlanetsNames.venus),
   Signs.Gemini: PlanetsOfSign(
-      primaryDom: PlanetsNames.mercury,
-      exaltation: PlanetsNames.pluto,
+      primaryDom: kPlanetsNames.mercury,
+      exaltation: kPlanetsNames.pluto,
       secondaryDom: null),
   Signs.Cancer: PlanetsOfSign(
-      primaryDom: PlanetsNames.moon,
-      exaltation: PlanetsNames.venus,
+      primaryDom: kPlanetsNames.moon,
+      exaltation: kPlanetsNames.venus,
       secondaryDom: null),
   Signs.Leo: PlanetsOfSign(
-      primaryDom: null, exaltation: null, secondaryDom: PlanetsNames.sun),
+      primaryDom: null, exaltation: null, secondaryDom: kPlanetsNames.sun),
   Signs.Virgo: PlanetsOfSign(
       primaryDom: null,
-      exaltation: PlanetsNames.uranus,
-      secondaryDom: PlanetsNames.mercury),
+      exaltation: kPlanetsNames.uranus,
+      secondaryDom: kPlanetsNames.mercury),
   Signs.Libra: PlanetsOfSign(
-      primaryDom: PlanetsNames.venus,
-      exaltation: PlanetsNames.saturn,
+      primaryDom: kPlanetsNames.venus,
+      exaltation: kPlanetsNames.saturn,
       secondaryDom: null),
   Signs.Scorpio: PlanetsOfSign(
-      primaryDom: PlanetsNames.pluto,
-      exaltation: PlanetsNames.mercury,
-      secondaryDom: PlanetsNames.mars),
+      primaryDom: kPlanetsNames.pluto,
+      exaltation: kPlanetsNames.mercury,
+      secondaryDom: kPlanetsNames.mars),
   Signs.Sagittarius: PlanetsOfSign(
-      primaryDom: PlanetsNames.jupiter,
+      primaryDom: kPlanetsNames.jupiter,
       exaltation: null,
-      secondaryDom: PlanetsNames.neptune),
+      secondaryDom: kPlanetsNames.neptune),
   Signs.Capricorn: PlanetsOfSign(
-      primaryDom: PlanetsNames.saturn,
-      exaltation: PlanetsNames.mars,
-      secondaryDom: PlanetsNames.uranus),
+      primaryDom: kPlanetsNames.saturn,
+      exaltation: kPlanetsNames.mars,
+      secondaryDom: kPlanetsNames.uranus),
   Signs.Aquarius: PlanetsOfSign(
-      primaryDom: PlanetsNames.uranus,
-      exaltation: PlanetsNames.neptune,
-      secondaryDom: PlanetsNames.saturn),
+      primaryDom: kPlanetsNames.uranus,
+      exaltation: kPlanetsNames.neptune,
+      secondaryDom: kPlanetsNames.saturn),
   Signs.Pisces: PlanetsOfSign(
-      primaryDom: PlanetsNames.neptune,
-      exaltation: PlanetsNames.moon,
-      secondaryDom: PlanetsNames.jupiter)
+      primaryDom: kPlanetsNames.neptune,
+      exaltation: kPlanetsNames.moon,
+      secondaryDom: kPlanetsNames.jupiter)
 };
+
+const List<String> kSymbolsName = [
+  'lib/assets/Sun_symbol.svg',
+  'lib/assets/Moon_symbol.svg',
+  'lib/assets/Mercury_symbol.svg',
+  'lib/assets/Venus_symbol.svg',
+  'lib/assets/Mars_symbol.svg',
+  'lib/assets/Jupiter_symbol.svg',
+  'lib/assets/Saturn_symbol.svg',
+  'lib/assets/Uranus_symbol.svg',
+  'lib/assets/Neptune_symbol.svg',
+  'lib/assets/Pluto_symbol.svg',
+];

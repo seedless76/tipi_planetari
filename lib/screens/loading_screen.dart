@@ -1,4 +1,4 @@
-import 'package:dominanti_planetarie/screens/dominant_screen.dart';
+import 'package:dominanti_planetarie/screens/dominants_screen.dart';
 import 'package:dominanti_planetarie/services/birth_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';

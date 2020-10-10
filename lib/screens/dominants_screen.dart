@@ -11,6 +11,7 @@ import 'package:flutter/widgets.dart';
 import '../graphic/reusable_card.dart';
 import '../services/constants.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:dominanti_planetarie/graphic/dominant_tile.dart';
 
 import '../services/constants.dart';
 import '../services/constants.dart';
@@ -50,45 +51,19 @@ class _DominantScreenState extends State<DominantScreen> {
       body: StaggeredGridView.countBuilder(
         crossAxisCount: 4,
         itemCount: 10,
-        itemBuilder: (BuildContext context, int index) => ReusableCard(
-          colour: Colors.black12,
-          cardChild: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Expanded(
-                flex: 4,
-                child: SvgPicture.asset(
-                  kSymbolsName[index],
-                  color: Colors.blue,
-                  matchTextDirection: true,
-                ),
-              ),
-              Expanded(
-                child: Text(
-                  'Dominante di ${EnumToString.toList(kPlanetsNames.values)[index]}',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+        itemBuilder: (BuildContext context, int index) =>
+            DominantTile(planetIndex: index),
         staggeredTileBuilder: (int index) => StaggeredTile.count(
             index == 0
                 ? 4
                 : index == 1 || index == 2
                     ? 2
-                    : 1,
+                    : 4,
             index == 0
                 ? 4
                 : index == 1 || index == 2
                     ? 2
                     : 1),
-        mainAxisSpacing: 10.0,
-        crossAxisSpacing: 10.0,
       ),
     );
   }

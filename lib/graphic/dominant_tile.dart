@@ -31,7 +31,7 @@ class DominantTile extends StatelessWidget {
               children: [
                 Expanded(
                   child: SvgPicture.asset(
-                    kSymbolsName[planet.symbol()],
+                    planet.symbol(),
                     color: kSignColor,
                     matchTextDirection: true,
                   ),

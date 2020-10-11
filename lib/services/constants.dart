@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/cupertino.dart';
 
 const kImmanuelURL = 'https://api.immanuel.app/chart/natal';
@@ -118,7 +119,10 @@ class Planet {
   }
 
   String symbol() {
-    return kSymbolsName[name];
+    print('Sono dentro Symbol....');
+    print('name è: $name');
+    print('il simbolo è: ${kSymbolsName[EnumToString.convertToString(name)]}');
+    return kSymbolsName[EnumToString.convertToString(name)];
   }
 }
 
@@ -217,14 +221,14 @@ final Map<Signs, PlanetsOfSign> kPlanetsOfSigns = {
 };
 
 const Map<String, String> kSymbolsName = {
-  'Sun: ': 'lib/assets/Sun_symbol.svg',
-  'Moon': 'lib/assets/Moon_symbol.svg',
-  'Mercury': 'lib/assets/Mercury_symbol.svg',
-  'Venus': 'lib/assets/Venus_symbol.svg',
-  'Mars': 'lib/assets/Mars_symbol.svg',
-  'Jupiter': 'lib/assets/Jupiter_symbol.svg',
-  'Saturn': 'lib/assets/Saturn_symbol.svg',
-  'Uranus': 'lib/assets/Uranus_symbol.svg',
-  'Neptune': 'lib/assets/Neptune_symbol.svg',
-  'Pluto': 'lib/assets/Pluto_symbol.svg',
+  'sun': 'lib/assets/Sun_symbol.svg',
+  'moon': 'lib/assets/Moon_symbol.svg',
+  'mercury': 'lib/assets/Mercury_symbol.svg',
+  'venus': 'lib/assets/Venus_symbol.svg',
+  'mars': 'lib/assets/Mars_symbol.svg',
+  'jupiter': 'lib/assets/Jupiter_symbol.svg',
+  'saturn': 'lib/assets/Saturn_symbol.svg',
+  'uranus': 'lib/assets/Uranus_symbol.svg',
+  'neptune': 'lib/assets/Neptune_symbol.svg',
+  'pluto': 'lib/assets/Pluto_symbol.svg',
 };

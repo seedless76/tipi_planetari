@@ -17,12 +17,19 @@ int getDominantValue(
       (element) => (kPlanetsOfSigns[element].exaltation == dominantPlanet),
       orElse: () => null);
 
+  //TODO questa parte può essere gestita con le costanti...
   //Imposto le case cosignficanti del domicilio primario, domicilio secondario ed esaltazione per il pianeta
-  int houseOfPrime = signOfPrimeDom == null ? 0 : signOfPrimeDom.index.toInt();
+  //Il numero della casa è pari all'indice dell'enum Signs +1 , in quanto i segni sono ordinati (ariete, toro, ecc.)
+  int houseOfPrime =
+      signOfPrimeDom == null ? 0 : signOfPrimeDom.index.toInt() + 1;
   int houseOfSecond =
-      signOfSecondDom == null ? 0 : signOfSecondDom.index.toInt();
+      signOfSecondDom == null ? 0 : signOfSecondDom.index.toInt() + 1;
   int houseOfExalt =
-      signOfExaltation == null ? 0 : signOfExaltation.index.toInt();
+      signOfExaltation == null ? 0 : signOfExaltation.index.toInt() + 1;
+
+  // print('imposto la casa prime a $houseOfPrime per $dominantPlanet');
+  // print('imposto la casa second a $houseOfSecond per $dominantPlanet');
+  // print('imposto la casa di esaltazione a $houseOfExalt per $dominantPlanet');
 
   int _upperConjunction(kPlanetsNames planet) {
     return (planetAngleConjunction(
@@ -147,7 +154,7 @@ int getDominantValue(
                 birthChart: birthChart, planet: planet, sign: signOfExaltation)
             ? Planet(planet).isFast()
                 ? kPlanFastInExalt
-                : kPlanSlowInExal
+                : kPlanSlowInExalt
             : 0;
     return _value;
   }
@@ -164,11 +171,17 @@ int getDominantValue(
               ? kMoonInPlanetSigns
               : 0
           : 0;
+      if (_value != 0) {
+        return _value;
+      }
       _value = (signOfSecondDom != null)
           ? _moonCheck(signOfSecondDom)
               ? kMoonInPlanetSigns
               : 0
           : 0;
+      if (_value != 0) {
+        return _value;
+      }
       _value = (signOfExaltation != null)
           ? _moonCheck(signOfExaltation)
               ? kMoonInPlanetSigns
@@ -285,6 +298,47 @@ int getDominantValue(
     return _value;
   }
 
+  int _sunInHouseOfExalt(kPlanetsNames planet) {
+    int _value = (houseOfExalt == 0) || (planet == kPlanetsNames.sun)
+        ? 0
+        : planetInHouse(
+                birthChart: birthChart,
+                planet: kPlanetsNames.sun,
+                houseNr: houseOfExalt)
+            ? kSunInHouseOfExalt
+            : 0;
+    return _value;
+  }
+
+  int _stelliumInHouseOfPrime() {
+    int _value = (houseOfPrime == 0)
+        ? 0
+        : stelliumInHouse(birthChart: birthChart, houseNr: houseOfPrime)
+            ? kStelliumInHouseOfPrime
+            : 0;
+    return _value;
+  }
+
+  int _stelliumInHouseOfSecond(kPlanetsNames planet) {
+    int _value = (houseOfSecond == 0)
+        ? 0
+        : stelliumInHouse(birthChart: birthChart, houseNr: houseOfSecond)
+            ? planet == kPlanetsNames.sun
+                ? kStelliumInHouseOfSecondSun
+                : kStelliumInHouseOfSecond
+            : 0;
+    return _value;
+  }
+
+  int _stelliumInHouseOfExalt() {
+    int _value = (houseOfExalt == 0)
+        ? 0
+        : stelliumInHouse(birthChart: birthChart, houseNr: houseOfExalt)
+            ? kStelliumInHouseOfExalt
+            : 0;
+    return _value;
+  }
+
   _dominantValue = _upperConjunction(dominantPlanet) +
       _downConjunction(dominantPlanet) +
       _ascInPrimeDom() +
@@ -306,11 +360,23 @@ int getDominantValue(
       _planetInHouseOfSecond(dominantPlanet) +
       _planetInHouseOfExalt(dominantPlanet) +
       _sunInHouseOfPrime(dominantPlanet) +
-      _sunInHouseOfSecond(dominantPlanet);
+      _sunInHouseOfSecond(dominantPlanet) +
+      _sunInHouseOfExalt(dominantPlanet) +
+      _stelliumInHouseOfPrime() +
+      _stelliumInHouseOfSecond(dominantPlanet) +
+      _stelliumInHouseOfExalt();
 
-//TODO qui va sistemato
-//   if (dominantPlanet == kPlanetsNames.venus) {
-//     print('Per venere sto restituendo il valore $_dominantValue');
-//   }
   return _dominantValue;
+}
+
+double maxDominantValue(Planet planet) {
+  double _maxDominantValue = 0.0;
+  _maxDominantValue = planet.name == kPlanetsNames.moon
+      ? kMaxMoonDominantValue
+      : planet.name == kPlanetsNames.sun
+          ? kMaxSunDominantValue
+          : planet.isFast()
+              ? kMaxFastDominantValue
+              : kMaxSlowDominantValue;
+  return _maxDominantValue;
 }

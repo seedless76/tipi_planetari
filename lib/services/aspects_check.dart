@@ -1,6 +1,14 @@
+import 'dart:math';
+
 import 'package:dominanti_planetarie/services/constants.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/cupertino.dart';
+
+double _angleDiff(double angle1, double angle2) {
+  return (angle2 - angle1).abs() <= 180
+      ? (angle2 - angle1).abs()
+      : 360 - (angle1 - angle2).abs();
+}
 
 bool planetAngleConjunction(
     {@required birthChart,
@@ -10,7 +18,7 @@ bool planetAngleConjunction(
   String stringAngle = EnumToString.convertToString(angle);
   double angle1 = birthChart['planets'][stringPlanet]['chartAngle'];
   double angle2 = birthChart['angles'][stringAngle]['chartAngle'];
-  return ((angle1 - angle2).abs() <= kConjunction);
+  return (_angleDiff(angle1, angle2) <= kConjunction);
 }
 
 bool planetPlanetConjunction(
@@ -21,7 +29,7 @@ bool planetPlanetConjunction(
   String _stringPlanet2 = EnumToString.convertToString(planet2);
   double angle1 = birthChart['planets'][_stringPlanet1]['chartAngle'];
   double angle2 = birthChart['planets'][_stringPlanet2]['chartAngle'];
-  return ((angle1 - angle2).abs() <= kConjunction);
+  return (_angleDiff(angle1, angle2) <= kConjunction);
 }
 
 bool angleInSign(
@@ -58,6 +66,7 @@ House getBirthChartHouses({@required birthChart, @required int houseNr}) {
   String _stringHouseNr = houseNr.toString();
   String _stringNextHouseNr = (houseNr + 1).toString();
   _house.init = birthChart['houses'][_stringHouseNr]['chartAngle'];
+  // La fine della casa è l'inizio della casa successiva, tranne nel caso di casa 12 che è l'inizio della casa 1
   _house.end = houseNr != 12
       ? birthChart['houses'][_stringNextHouseNr]['chartAngle']
       : birthChart['houses'][1.toString()]['chartAngle'];
@@ -76,4 +85,16 @@ bool planetInHouse(
       ? ((_planetAngle > _house.init) && (_planetAngle <= _house.end))
       : ((_planetAngle > _house.init) || (_planetAngle <= _house.end));
   return _planetInHouse;
+}
+
+bool stelliumInHouse({@required birthChart, @required int houseNr}) {
+  int _planetsInSign = 0;
+  kPlanetsNames.values.forEach((planet) {
+    if (planetInHouse(
+        birthChart: birthChart, planet: planet, houseNr: houseNr)) {
+      // print('trovato $planet in casa $houseNr');
+      _planetsInSign++;
+    }
+  });
+  return (_planetsInSign >= kStelliumPlanetsNr);
 }

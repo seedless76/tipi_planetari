@@ -8,6 +8,18 @@ const kImmanuelApiKey = 'SzQN82nJLOmFX7ASAuWxpYywTFVT55Ov';
 const kImmanuelSecret = 'rX9sgmysBLVj';
 const kHouseSystem = 'Placidus';
 
+//Massimo valore della dominante per i pianeti lenti
+const kMaxSlowDominantValue = 60.0;
+
+//Massimo valore della dominante per i pianeti veloci
+const kMaxFastDominantValue = 73.0;
+
+//Massimo valore della dominante per la luna
+const kMaxMoonDominantValue = 50.0;
+
+//Massimo valore della dominante per il sole
+const kMaxSunDominantValue = 39.0;
+
 // Ampiezza della congiunzione
 const kConjunction = 10;
 
@@ -35,7 +47,7 @@ const kSunInExalt = 4; //esaltazione
 //Punti per pianeta lento in
 const kPlanSlowInPrimeDom = 3; //domicilio primario
 const kPlanSlowInSecondDom = 2; //domicilio secondario
-const kPlanSlowInExal = 1; //esaltazione
+const kPlanSlowInExalt = 1; //esaltazione
 
 //Punti per pianeta veloce in
 const kPlanFastInPrimeDom = 6; //domicilio primario
@@ -68,6 +80,11 @@ const kSunInHouseOfPrime = 3; //domicilio primario
 const kSunInHouseOfSecond = 2; //domicilio secondario
 const kSunInHouseOfExalt = 1; //esaltazione
 
+// Punti per stellium in casa cosignificante al segno del
+const kStelliumInHouseOfPrime = 3; //domicilio primario
+const kStelliumInHouseOfSecond = 2; //domicilio secondario
+const kStelliumInHouseOfSecondSun = 3; //domicilio secondario in caso di sole
+const kStelliumInHouseOfExalt = 1; //esaltazione
 enum Signs {
   Aries,
   Taurus,

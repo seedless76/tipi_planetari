@@ -22,10 +22,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
   // Carico i valori del tema natale e delle dominanti
   void getData() async {
     var birthChartData = await BirthChart(
-      latitude: '38.164327',
-      longitude: '15.536086',
-      birthDate: '1976-10-18',
-      birthTime: '13:15',
+      latitude: '40.8333336',
+      longitude: '14.116667',
+      birthDate: '1994-01-14',
+      birthTime: '18:30',
     ).getBirthChart();
     var dominantsData =
         BirthChartDominants(birthChart: birthChartData).calculate();

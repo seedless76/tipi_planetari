@@ -309,8 +309,8 @@ int getDominantValue(
       _sunInHouseOfSecond(dominantPlanet);
 
 //TODO qui va sistemato
-  if (dominantPlanet == kPlanetsNames.venus) {
-    print('Per venere sto restituendo il valore $_dominantValue');
-  }
+//   if (dominantPlanet == kPlanetsNames.venus) {
+//     print('Per venere sto restituendo il valore $_dominantValue');
+//   }
   return _dominantValue;
 }

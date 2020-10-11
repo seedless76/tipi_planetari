@@ -119,9 +119,6 @@ class Planet {
   }
 
   String symbol() {
-    print('Sono dentro Symbol....');
-    print('name è: $name');
-    print('il simbolo è: ${kSymbolsName[EnumToString.convertToString(name)]}');
     return kSymbolsName[EnumToString.convertToString(name)];
   }
 }

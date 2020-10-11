@@ -65,9 +65,9 @@ class _DominantScreenState extends State<DominantScreen> {
                     ? 2
                     : 4,
             index == 0
-                ? 3
+                ? 4
                 : index == 1 || index == 2
-                    ? 2
+                    ? 3
                     : 2),
       ),
     );

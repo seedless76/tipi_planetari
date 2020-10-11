@@ -2,7 +2,6 @@ import 'package:dominanti_planetarie/services/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:dominanti_planetarie/graphic/reusable_card.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:enum_to_string/enum_to_string.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'graphic_constants.dart';
 

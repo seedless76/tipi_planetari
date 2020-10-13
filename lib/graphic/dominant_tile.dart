@@ -1,9 +1,12 @@
 import 'package:dominanti_planetarie/services/constants.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
 import 'package:dominanti_planetarie/graphic/reusable_card.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
+import '../services/constants.dart';
 import 'graphic_constants.dart';
+
 
 class DominantTile extends StatelessWidget {
   DominantTile(
@@ -36,11 +39,23 @@ class DominantTile extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: Center(
-                    child: Text(
-                      '$dominantValue',
-                      style: kDominantNrStyle,
-                    ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: Text(
+                          '$dominantValue',
+                          style: kDominantNrStyle,
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          '${EnumToString.convertToString(planet.name)}',
+                              style: kDominantNrStyle,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

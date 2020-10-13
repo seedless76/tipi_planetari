@@ -1,7 +1,5 @@
 import 'package:dominanti_planetarie/graphic/graphic_constants.dart';
-import 'package:dominanti_planetarie/services/birth_chart.dart';
 import 'package:dominanti_planetarie/services/constants.dart';
-import 'package:dominanti_planetarie/services/dominant_calculation.dart';
 import 'package:dominanti_planetarie/services/dominants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

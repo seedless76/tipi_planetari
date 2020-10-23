@@ -1,6 +1,5 @@
 import 'package:dominanti_planetarie/screens/dominants_screen.dart';
 import 'package:dominanti_planetarie/services/birth_chart.dart';
-import 'package:dominanti_planetarie/services/constants.dart';
 import 'package:dominanti_planetarie/services/dominants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -27,8 +26,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
       birthDate: '1994-01-14',
       birthTime: '18:30',
     ).getBirthChart();
-    var dominantsData =
-        BirthChartDominants(birthChart: birthChartData).calculate();
+    var dominantsData = dominants(birthChartData);
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) {

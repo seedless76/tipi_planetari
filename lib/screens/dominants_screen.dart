@@ -1,7 +1,5 @@
 import 'package:dominanti_planetarie/graphic/graphic_constants.dart';
-import 'package:dominanti_planetarie/services/birth_chart.dart';
 import 'package:dominanti_planetarie/services/constants.dart';
-import 'package:dominanti_planetarie/services/dominant_calculation.dart';
 import 'package:dominanti_planetarie/services/dominants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +17,7 @@ class DominantScreen extends StatefulWidget {
 }
 
 class _DominantScreenState extends State<DominantScreen> {
-  List<kPlanetsNames> _dominantsPlanets;
+  List<PlanetsNames> _dominantsPlanets;
   List<int> _dominantsValues;
   double _dominantsTotal;
 
@@ -31,12 +29,10 @@ class _DominantScreenState extends State<DominantScreen> {
 
   void updateUI(dynamic birthChartData, dynamic dominantsData) {
     setState(() {
-      Map<kPlanetsNames, int> dominantsData =
-          BirthChartDominants(birthChart: birthChartData).calculate();
+      dominantsData = dominants(birthChartData);
+      _dominantsTotal = dominantsOverallValue(birthChartData);
       _dominantsPlanets = dominantsData.keys.toList();
       _dominantsValues = dominantsData.values.toList();
-      _dominantsTotal =
-          BirthChartDominants().overallValue(dominantsData: dominantsData);
       print('Il valore totale delle dominanti è $_dominantsTotal');
       // for (var planet in PlanetName) {
       //   print('La dominante di $planet è ${dominantsData[planet]}');

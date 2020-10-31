@@ -16,7 +16,7 @@ class BirthChart {
   final String birthDate;
   final String birthTime;
   var birthChartData;
-  var birthChartHouses;
+  // var birthChartHouses;
 
   Future<dynamic> getBirthChart() async {
     final http.Response response = await http.post(

@@ -2,9 +2,9 @@ import 'package:dominanti_planetarie/services/constants.dart';
 import 'package:dominanti_planetarie/services/dominant_calculation.dart';
 import 'constants.dart';
 
-dominants(birthChart) {
+Map<PlanetName, int> dominants(birthChart) {
   var _unsortedDominants = Map();
-  PlanetsNames.values.forEach((planet) {
+  PlanetName.values.forEach((planet) {
     _unsortedDominants[planet] =
         getDominantValue(birthChart: birthChart, dominantPlanet: planet);
   });
@@ -15,9 +15,11 @@ dominants(birthChart) {
       key: (k) => k, value: (k) => _unsortedDominants[k]);
 }
 
-double dominantsOverallValue(dominantsData) {
-  double _value = 0.0;
-  PlanetsNames.values.forEach((planet) {
+int dominantsTotalValue(dominantsData) {
+  int _value = 0;
+  // print('Calcolo il valore totale delle dominanti...');
+  PlanetName.values.forEach((planet) {
+    print('${dominantsData[planet]}');
     _value = _value + dominantsData[planet];
   });
   return _value;

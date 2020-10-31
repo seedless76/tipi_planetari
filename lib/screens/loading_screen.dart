@@ -1,5 +1,6 @@
 import 'package:dominanti_planetarie/screens/dominants_screen.dart';
 import 'package:dominanti_planetarie/services/birth_chart.dart';
+import 'package:dominanti_planetarie/services/constants.dart';
 import 'package:dominanti_planetarie/services/dominants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -21,12 +22,16 @@ class _LoadingScreenState extends State<LoadingScreen> {
   // Carico i valori del tema natale e delle dominanti
   void getData() async {
     var birthChartData = await BirthChart(
-      latitude: '40.8333336',
-      longitude: '14.116667',
-      birthDate: '1994-01-14',
-      birthTime: '18:30',
+      latitude: '44.4808962',
+      longitude: '11.3497545',
+      birthDate: '1976-10-18',
+      birthTime: '13:15',
     ).getBirthChart();
     var dominantsData = dominants(birthChartData);
+    print('Ho scaricato i dati del birthchart');
+    PlanetName.values.forEach((planet) {
+      print('La dominante di $planet è ${dominantsData[planet]}');
+    });
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) {

@@ -13,7 +13,11 @@ class DominantTile extends StatelessWidget {
 
   final Planet planet;
   final int dominantValue;
-  final double maxDominantValue;
+  final int maxDominantValue;
+
+  String dominantPercentage() {
+    return (dominantValue / maxDominantValue * 100).toStringAsFixed(1);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +66,7 @@ class DominantTile extends StatelessWidget {
               borderWidth: 0.0,
               borderRadius: 12.0,
               direction: Axis.horizontal,
-              center: Text(''),
+              center: Text(dominantPercentage() + '%'),
             ),
           ),
         ],

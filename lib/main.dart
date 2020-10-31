@@ -1,3 +1,6 @@
+import 'package:dominanti_planetarie/screens/dominants_screen.dart';
+import 'package:dominanti_planetarie/screens/registration_screen.dart';
+import 'package:dominanti_planetarie/screens/welcome_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dominanti_planetarie/screens/loading_screen.dart';
@@ -16,7 +19,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      home: LoadingScreen(),
+      initialRoute: WelcomeScreen().id,
+      routes: {
+        WelcomeScreen().id: (context) => WelcomeScreen(),
+        RegistrationScreen().id: (context) => RegistrationScreen(),
+        LoadingScreen().id: (context) => LoadingScreen(),
+        DominantScreen().id: (context) =>
+            DominantScreen(birthChartData: null, dominantsData: null),
+      },
       // home: DominantScreen(),
     );
   }

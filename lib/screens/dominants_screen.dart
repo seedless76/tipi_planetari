@@ -8,6 +8,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:dominanti_planetarie/graphic/dominant_tile.dart';
 
 class DominantScreen extends StatefulWidget {
+  String id = 'dominant_screen';
   DominantScreen({@required this.birthChartData, @required this.dominantsData});
   final birthChartData;
   final dominantsData;

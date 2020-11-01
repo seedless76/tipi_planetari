@@ -1,15 +1,10 @@
 import 'dart:convert';
-
-import 'package:dominanti_planetarie/services/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:dominanti_planetarie/constants.dart';
 
 class BirthChart {
-  BirthChart(
-      {@required this.latitude,
-      @required this.longitude,
-      @required this.birthDate,
-      @required this.birthTime});
+  BirthChart({@required this.latitude, @required this.longitude, @required this.birthDate, @required this.birthTime});
 
   final String latitude;
   final String longitude;

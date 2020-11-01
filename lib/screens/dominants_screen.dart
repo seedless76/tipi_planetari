@@ -1,14 +1,14 @@
+import 'package:dominanti_planetarie/constants.dart';
+import 'package:dominanti_planetarie/graphic/dominant_tile.dart';
 import 'package:dominanti_planetarie/graphic/graphic_constants.dart';
-import 'package:dominanti_planetarie/services/constants.dart';
 import 'package:dominanti_planetarie/services/dominants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:dominanti_planetarie/graphic/dominant_tile.dart';
 
 class DominantScreen extends StatefulWidget {
-  String id = 'dominant_screen';
+  static String id = 'dominant_screen';
   DominantScreen({@required this.birthChartData, @required this.dominantsData});
   final birthChartData;
   final dominantsData;

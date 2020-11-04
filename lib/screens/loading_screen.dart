@@ -27,17 +27,22 @@ class _LoadingScreenState extends State<LoadingScreen> {
       birthDate: '1994-01-14',
       birthTime: '18:30',
     ).getBirthChart();
-    var dominantsData =
-        BirthChartDominants(birthChart: birthChartData).calculate();
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) {
-        return DominantScreen(
-          birthChartData: birthChartData,
-          dominantsData: dominantsData,
-        );
-      }),
-    );
+    var dominantsData = BirthChartDominants(birthChart: birthChartData).calculate();
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
+      return DominantScreen(
+        birthChartData: birthChartData,
+        dominantsData: dominantsData,
+      );
+    }), (route) => false);
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (context) {
+    //     return DominantScreen(
+    //       birthChartData: birthChartData,
+    //       dominantsData: dominantsData,
+    //     );
+    //   }),
+    // );
   }
 
   @override

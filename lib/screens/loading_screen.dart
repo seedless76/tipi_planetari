@@ -34,27 +34,21 @@ class _LoadingScreenState extends State<LoadingScreen> {
         dominantsData: dominantsData,
       );
     }), (route) => false);
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(builder: (context) {
-    //     return DominantScreen(
-    //       birthChartData: birthChartData,
-    //       dominantsData: dominantsData,
-    //     );
-    //   }),
-    // );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Loading birthchart data...'),
-      ),
       body: Center(
-        child: SpinKitThreeBounce(
-          color: Colors.white,
-          size: 100,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Loading birthchart data...', style: kTitleTextStyle),
+            SpinKitThreeBounce(
+              color: Colors.white,
+              size: 100,
+            ),
+          ],
         ),
       ),
     );

@@ -3,8 +3,8 @@ import 'package:dominanti_planetarie/graphic/reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
-import 'graphic_constants.dart';
 
+import 'graphic_constants.dart';
 
 class DominantTile extends StatelessWidget {
   DominantTile({@required this.planet, @required this.dominantValue, @required this.maxDominantValue});
@@ -51,7 +51,7 @@ class DominantTile extends StatelessWidget {
           Container(
             height: 50.0,
             padding: EdgeInsets.only(
-              top: 10,
+              // top: 10,
               bottom: 10,
             ),
             child: LiquidLinearProgressIndicator(

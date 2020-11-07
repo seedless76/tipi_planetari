@@ -9,11 +9,9 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class DominantScreen extends StatefulWidget {
   static String id = 'dominant_screen';
-  // DominantScreen({@required this.birthChartData, @required this.dominantsData});
   DominantScreen({@required this.birthChartData});
   final birthChartData;
   var dominantsData;
-
   @override
   _DominantScreenState createState() => _DominantScreenState();
 }

@@ -25,22 +25,24 @@ int getDominantValue({@required dynamic birthChart, @required PlanetName dominan
   // print('imposto la casa di esaltazione a $houseOfExalt per $dominantPlanet');
 
   int _upperConjunction(PlanetName planet) {
-    return (planetAngleConjunction(birthChart: birthChart, planet: planet, angle: Angles.asc) ||
-            planetAngleConjunction(birthChart: birthChart, planet: planet, angle: Angles.mc))
+    return (planetAngleConjunction(birthChart: birthChart, planet: planet, angle: BirthChartAngles.asc) ||
+            planetAngleConjunction(birthChart: birthChart, planet: planet, angle: BirthChartAngles.mc))
         ? kUpperConjunction
         : 0;
   }
 
   int _downConjunction(PlanetName planet) {
-    return (planetAngleConjunction(birthChart: birthChart, planet: planet, angle: Angles.desc) ||
-            planetAngleConjunction(birthChart: birthChart, planet: planet, angle: Angles.ic))
+    return (planetAngleConjunction(birthChart: birthChart, planet: planet, angle: BirthChartAngles.desc) ||
+            planetAngleConjunction(birthChart: birthChart, planet: planet, angle: BirthChartAngles.ic))
         ? kDownConjunction
         : 0;
   }
 
   int _ascInPrimeDom() {
     if (signOfPrimeDom != null) {
-      return angleInSign(birthChart: birthChart, angle: Angles.asc, sign: signOfPrimeDom) ? kAscInPrimeDom : 0;
+      return angleInSign(birthChart: birthChart, angle: BirthChartAngles.asc, sign: signOfPrimeDom)
+          ? kAscInPrimeDom
+          : 0;
     } else {
       return 0;
     }
@@ -49,7 +51,7 @@ int getDominantValue({@required dynamic birthChart, @required PlanetName dominan
   int _ascInSecondDom(PlanetName planet) {
     int _value = signOfSecondDom == null
         ? 0
-        : angleInSign(birthChart: birthChart, angle: Angles.asc, sign: signOfSecondDom)
+        : angleInSign(birthChart: birthChart, angle: BirthChartAngles.asc, sign: signOfSecondDom)
             ? planet == PlanetName.sun
                 ? kAscInSecondDomSun
                 : kAscInSecondDom
@@ -60,7 +62,7 @@ int getDominantValue({@required dynamic birthChart, @required PlanetName dominan
   int _ascInExalt() {
     int _value = signOfExaltation == null
         ? 0
-        : angleInSign(birthChart: birthChart, angle: Angles.asc, sign: signOfExaltation)
+        : angleInSign(birthChart: birthChart, angle: BirthChartAngles.asc, sign: signOfExaltation)
             ? kAscInExalt
             : 0;
     return _value;

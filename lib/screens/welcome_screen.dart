@@ -8,7 +8,7 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   Future<void> delayMethod() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 5));
     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => InputScreen()), (route) => false);
   }
 
@@ -30,7 +30,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "Welcome to [APPNAME]",
+                  "Di che pianeta sei?",
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,

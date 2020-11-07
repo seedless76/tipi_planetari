@@ -6,7 +6,7 @@ double _angleDiff(double angle1, double angle2) {
   return (angle2 - angle1).abs() <= 180 ? (angle2 - angle1).abs() : 360 - (angle1 - angle2).abs();
 }
 
-bool planetAngleConjunction({@required birthChart, @required PlanetName planet, @required Angles angle}) {
+bool planetAngleConjunction({@required birthChart, @required PlanetName planet, @required BirthChartAngles angle}) {
   String stringPlanet = EnumToString.convertToString(planet);
   String stringAngle = EnumToString.convertToString(angle);
   double angle1 = birthChart['planets'][stringPlanet]['chartAngle'];
@@ -22,7 +22,7 @@ bool planetPlanetConjunction({@required birthChart, @required PlanetName planet1
   return (_angleDiff(angle1, angle2) <= kConjunction);
 }
 
-bool angleInSign({@required birthChart, @required Angles angle, @required Signs sign}) {
+bool angleInSign({@required birthChart, @required BirthChartAngles angle, @required Signs sign}) {
   String stringAngle = EnumToString.convertToString(angle);
   String stringSign = EnumToString.convertToString(sign);
   return (birthChart['angles'][stringAngle]['sign'] == stringSign);

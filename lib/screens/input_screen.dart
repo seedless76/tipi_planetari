@@ -1,5 +1,5 @@
+import 'package:dominanti_planetarie/graphic/graphic_constants.dart';
 import 'package:dominanti_planetarie/screens/loading_screen.dart';
-import 'package:dominanti_planetarie/services/constants.dart';
 import 'package:flutter/material.dart';
 
 class InputScreen extends StatelessWidget {
@@ -15,7 +15,7 @@ class InputScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Fill your informations',
+                  'Inserisci i tuoi dati',
                   textAlign: TextAlign.center,
                   style: kTitleTextStyle,
                 ),
@@ -23,7 +23,7 @@ class InputScreen extends StatelessWidget {
                   height: 50,
                 ),
                 Text(
-                  'Birthday',
+                  'Data di nascita',
                   style: kTitleTextStyle,
                 ),
                 SizedBox(
@@ -38,7 +38,7 @@ class InputScreen extends StatelessWidget {
                   height: 26,
                 ),
                 Text(
-                  'Birth Time',
+                  'Ora di nascita',
                   style: kTitleTextStyle,
                 ),
                 SizedBox(
@@ -53,7 +53,7 @@ class InputScreen extends StatelessWidget {
                   height: 26,
                 ),
                 Text(
-                  'Birth City',
+                  'Città di nascita',
                   style: kTitleTextStyle,
                 ),
                 SizedBox(
@@ -74,7 +74,7 @@ class InputScreen extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(8)), color: Colors.blue),
                       height: 50,
-                      child: Center(child: Text('Get your [YOURTEXT]', style: kTitleTextStyle)),
+                      child: Center(child: Text('Scopri i tuoi valori planetari', style: kTitleTextStyle)),
                     ))
               ],
             ),

@@ -38,8 +38,9 @@ class _DateTimeFormState extends State<DateTimeForm> {
 }
 
 class BasicDateField extends StatelessWidget {
-  var DateTime userData;
+  DateTime userData;
   final format = DateFormat("dd-MM-yyyy");
+
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
@@ -54,9 +55,8 @@ class BasicDateField extends StatelessWidget {
               lastDate: DateTime.now());
         },
         onSaved: (DateTime value) {
-                      userData = value;
-          })
-        }
+          userData = value;
+        },
       ),
     ]);
   }

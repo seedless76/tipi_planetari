@@ -9,7 +9,7 @@ class LoadingScreen extends StatefulWidget {
   static String id = 'loading_screen';
   final DateTime userBirthDate;
   final DateTime userBirthTime;
-  LoadingScreen({@required this.userBirthDate, @required this.userBirthTime});
+  // LoadingScreen({@required this.userBirthDate, @required this.userBirthTime});
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
 }
@@ -26,38 +26,33 @@ class _LoadingScreenState extends State<LoadingScreen> {
   // Carico i valori del tema natale e delle dominanti
   void getData() async {
     var birthChartData = await BirthChart(
-      latitude: '44.4808962',
-      longitude: '11.3497545',
-      birthDate: '1976-10-18',
-      birthTime: '13:15',
+      latitude: '40.8333336',
+      longitude: '14.116667',
+      birthDate: '1994-01-14',
+      birthTime: '18:30',
     ).getBirthChart();
-    var dominantsData = dominants(birthChartData);
-    print('Ho scaricato i dati del birthchart');
-    PlanetName.values.forEach((planet) {
-      print('La dominante di $planet è ${dominantsData[planet]}');
-    });
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) {
-        return DominantScreen(
-          birthChartData: birthChartData,
-          dominantsData: dominantsData,
-        );
-      },
-      ),
-    );
+    var dominantsData = BirthChartDominants(birthChart: birthChartData).calculate();
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
+      return DominantScreen(
+        birthChartData: birthChartData,
+        dominantsData: dominantsData,
+      );
+    }), (route) => false);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Loading birthchart data...'),
-      ),
       body: Center(
-        child: SpinKitThreeBounce(
-          color: Colors.white,
-          size: 100,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Loading birthchart data...', style: kTitleTextStyle),
+            SpinKitThreeBounce(
+              color: Colors.white,
+              size: 100,
+            ),
+          ],
         ),
       ),
     );

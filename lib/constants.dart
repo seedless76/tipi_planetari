@@ -68,8 +68,7 @@ const kMoonPlanetConjunction = 5;
 // Punti per pianeta in casa cosignificante al segno del
 const kPlanetInHouseOfPrime = 5; //domicilio primario
 const kPlanetInHouseOfSecond = 4; //domicilio secondario
-const kPlanetInHouseOfSecondSun =
-    5; //domicilio secondario in caso di dominante solare
+const kPlanetInHouseOfSecondSun = 5; //domicilio secondario in caso di dominante solare
 const kPlanetInHouseOfExalt = 3; //esaltazione
 
 // Punti per sole in casa cosignificante al segno del
@@ -82,20 +81,7 @@ const kStelliumInHouseOfPrime = 3; //domicilio primario
 const kStelliumInHouseOfSecond = 2; //domicilio secondario
 const kStelliumInHouseOfSecondSun = 3; //domicilio secondario in caso di sole
 const kStelliumInHouseOfExalt = 1; //esaltazione
-enum Signs {
-  Aries,
-  Taurus,
-  Gemini,
-  Cancer,
-  Leo,
-  Virgo,
-  Libra,
-  Scorpio,
-  Sagittarius,
-  Capricorn,
-  Aquarius,
-  Pisces
-}
+enum Signs { Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, Pisces }
 enum PlanetName {
   sun,
   moon,
@@ -155,8 +141,7 @@ final List<PlanetName> kPlanetsFast = const [
   PlanetName.mars,
 ];
 
-final List<int> kHousesName =
-    List.generate(12, (int index) => index + 1, growable: false);
+final List<int> kHousesName = List.generate(12, (int index) => index + 1, growable: false);
 
 class House {
   House({@required this.init, @required this.end});
@@ -172,10 +157,7 @@ class Dominant {
 }
 
 class PlanetsOfSign {
-  PlanetsOfSign(
-      {@required this.primaryDom,
-      @required this.exaltation,
-      @required this.secondaryDom});
+  PlanetsOfSign({@required this.primaryDom, @required this.exaltation, @required this.secondaryDom});
 
   PlanetName primaryDom;
   PlanetName exaltation;
@@ -243,3 +225,15 @@ const Map<String, String> kSymbolsName = {
   'neptune': 'lib/assets/Neptune_symbol.svg',
   'pluto': 'lib/assets/Pluto_symbol.svg',
 };
+
+const TextStyle kTitleTextStyle = TextStyle(
+  color: Color(0xffffffff),
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+);
+
+const TextStyle kInputTextStyle = TextStyle(
+  color: Color(0xff39A3FA),
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+);

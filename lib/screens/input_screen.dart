@@ -1,21 +1,86 @@
-import 'package:dominanti_planetarie/graphic/date_time_form.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:dominanti_planetarie/screens/loading_screen.dart';
+import 'package:dominanti_planetarie/services/constants.dart';
 import 'package:flutter/material.dart';
 
 class InputScreen extends StatelessWidget {
-  static String id = 'input_screen';
-  // final DateTimeField
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          appBar: AppBar(
-            title: Text('Inserisci i tuoi dati'),
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.only(left: 36, top: 80, right: 36, bottom: 40),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  'Fill your informations',
+                  textAlign: TextAlign.center,
+                  style: kTitleTextStyle,
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Text(
+                  'Birthday',
+                  style: kTitleTextStyle,
+                ),
+                SizedBox(
+                  height: 17,
+                ),
+                Text(
+                  '25/09/2020',
+                  textAlign: TextAlign.center,
+                  style: kInputTextStyle,
+                ),
+                SizedBox(
+                  height: 26,
+                ),
+                Text(
+                  'Birth Time',
+                  style: kTitleTextStyle,
+                ),
+                SizedBox(
+                  height: 17,
+                ),
+                Text(
+                  '07:48 AM',
+                  textAlign: TextAlign.center,
+                  style: kInputTextStyle,
+                ),
+                SizedBox(
+                  height: 26,
+                ),
+                Text(
+                  'Birth City',
+                  style: kTitleTextStyle,
+                ),
+                SizedBox(
+                  height: 17,
+                ),
+                Text(
+                  'Paris, France',
+                  textAlign: TextAlign.center,
+                  style: kInputTextStyle,
+                ),
+                SizedBox(
+                  height: 100,
+                ),
+                FlatButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoadingScreen()));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(8)), color: Colors.blue),
+                      height: 50,
+                      child: Center(child: Text('Get your [YOURTEXT]', style: kTitleTextStyle)),
+                    ))
+              ],
+            ),
           ),
-          body: ListView(
-            padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
-            children: [DateTimeForm()],
-          )),
+        ),
+      ),
     );
   }
 }

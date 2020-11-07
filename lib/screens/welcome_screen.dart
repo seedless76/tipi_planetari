@@ -1,51 +1,54 @@
+import 'package:dominanti_planetarie/screens/input_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'input_screen.dart';
+class WelcomeScreen extends StatefulWidget {
+  @override
+  _WelcomeScreenState createState() => _WelcomeScreenState();
+}
 
-class WelcomeScreen extends StatelessWidget {
-  static String id = 'welcome_screen';
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  Future<void> delayMethod() async {
+    await Future.delayed(const Duration(seconds: 2));
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => InputScreen()), (route) => false);
+  }
+
+  @override
+  void initState() {
+    delayMethod();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Center(
-              child: Text(
-                'TIPI PLANETARI',
-                style: Theme.of(context).textTheme.headline2,
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 200.0,
-            width: 10,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: 10.0,
-              horizontal: 5.0,
-            ),
-            child: Material(
-              elevation: 5.0,
-              borderRadius: BorderRadius.circular(30.0),
-              child: MaterialButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, InputScreen.id);
-                },
-                minWidth: 200.0,
-                height: 42.0,
-                child: Text(
-                  'Log In',
+      body: SafeArea(
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.only(top: 100),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "Welcome to [APPNAME]",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff39A3FA),
+                  ),
                 ),
-              ),
+                SizedBox(
+                  height: 75,
+                ),
+                Container(
+                  width: 200,
+                  height: 200,
+                  color: Colors.amber,
+                )
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

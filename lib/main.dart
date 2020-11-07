@@ -1,6 +1,8 @@
+import 'package:dominanti_planetarie/screens/input_screen.dart';
+import 'package:dominanti_planetarie/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:dominanti_planetarie/screens/loading_screen.dart';
-import 'package:dominanti_planetarie/screens/dominants_screen.dart';
+// import 'package:dominanti_planetarie/screens/loading_screen.dart';
+// import 'package:dominanti_planetarie/screens/dominants_screen.dart';
 
 import 'screens/dominants_screen.dart';
 
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      home: LoadingScreen(),
+      home: WelcomeScreen(),
       // home: DominantScreen(),
     );
   }

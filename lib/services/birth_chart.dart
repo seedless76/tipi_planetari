@@ -6,15 +6,12 @@ import 'package:http/http.dart' as http;
 
 class BirthChart {
   BirthChart({@required this.latitude, @required this.longitude, @required this.birthDate, @required this.birthTime});
-
   final String latitude;
   final String longitude;
   final String birthDate;
   final String birthTime;
-  var birthChartData;
-  // var birthChartHouses;
 
-  Future<dynamic> getBirthChart() async {
+  Future<dynamic> getBirthChartData() async {
     print('Sono dentro a getBirthChart e sto effettuando la chiamata:');
     print('api_key: $kImmanuelApiKey api_secret: $kImmanuelSecret latitude: $latitude longitude: $longitude '
         'birth_date: $birthDate birth_time: $birthTime house_system: $kHouseSystem');
@@ -31,8 +28,7 @@ class BirthChart {
       },
     );
     if (response.statusCode == 200) {
-      birthChartData = jsonDecode(response.body);
-      return birthChartData;
+      return jsonDecode(response.body);
     } else {
       print('Response status: ${response.statusCode}');
     }

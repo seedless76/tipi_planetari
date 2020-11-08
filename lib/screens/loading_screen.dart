@@ -23,11 +23,17 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   // Calculate BirthChart data
   void getBirthChartData({String birthDate, String birthTime}) async {
-    var birthChartData =
-        await BirthChart(latitude: '40.8333336', longitude: '14.116667', birthDate: birthDate, birthTime: birthTime)
-            .getBirthChart();
+
+    //Creo l'istanza
+    BirthChart userBirthChart =
+        BirthChart(latitude: '40.8333336', longitude: '14.116667', birthDate: birthDate, birthTime: birthTime);
+
+    //Creo i valori del tema e carico i dati
+    var userBirthChartData = await userBirthChart.getBirthChartData();
+
+    //Passo i dati alla schermata delle dominanti
     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
-      return DominantScreen(birthChartData: birthChartData);
+      return DominantScreen(birthChartData: userBirthChartData);
     }), (route) => false);
   }
 

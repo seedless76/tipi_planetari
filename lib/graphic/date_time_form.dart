@@ -9,9 +9,12 @@ class DateTimeForm extends StatefulWidget {
 }
 
 class _DateTimeFormState extends State<DateTimeForm> {
+  //TODO add a form field to select the Birth city of the users.
+  //TODO calculate longitude and latitude of the Birth city to pass to the birthchart calculator
+
   final formKey = GlobalKey<FormState>();
   final dateFormFormat = DateFormat("dd-MM-yyyy");
-  final dateStringFormat = DateFormat("yyyy-MM-dd");
+  final dateStringFormat = DateFormat("yyyy-MM-dd"); //La data va passata all'API in formato US
   final timeFormat = DateFormat("HH:mm");
   DateTime userBirthDate;
   String userBirthDateString;
@@ -30,9 +33,6 @@ class _DateTimeFormState extends State<DateTimeForm> {
             DateTimeField(
               format: dateFormFormat,
               autovalidate: true,
-              // validator: (value) {
-              //   return (value == null) ? 'Devi inserire la data di nascita' : true;
-              // },
               onShowPicker: (context, currentValue) {
                 return showDatePicker(
                     context: context,
@@ -54,9 +54,6 @@ class _DateTimeFormState extends State<DateTimeForm> {
             DateTimeField(
               format: timeFormat,
               autovalidate: true,
-              // validator: (value) {
-              //   return (value == null) ? 'Inserisci l\'ora della tua nascita' : true;
-              // },
               onShowPicker: (context, currentValue) async {
                 final time = await showTimePicker(
                   context: context,

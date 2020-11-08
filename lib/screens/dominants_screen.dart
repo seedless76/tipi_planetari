@@ -32,14 +32,9 @@ class _DominantScreenState extends State<DominantScreen> {
       print('Viene chiamato updateUI');
       var dominantsData = dominants(birthChartData);
       _dominantsTotal = dominantsTotalValue(dominantsData);
-      // Map<kPlanetsNames, int> dominantsData = BirthChartDominants(birthChart: birthChartData).calculate();
       _dominantsPlanets = dominantsData.keys.toList();
       _dominantsValues = dominantsData.values.toList();
-      // _dominantsTotal = BirthChartDominants().overallValue(dominantsData: dominantsData);
       print('Il valore totale delle dominanti è $_dominantsTotal');
-      // PlanetName.values.forEach((planet) {
-      //   print('La dominante di $planet è ${dominantsData[planet]}');
-      // });
     });
   }
 
@@ -56,8 +51,10 @@ class _DominantScreenState extends State<DominantScreen> {
         body: StaggeredGridView.countBuilder(
           crossAxisCount: 4,
           itemCount: 10,
-          itemBuilder: (BuildContext context, int index) =>
-              DominantTile(planet: Planet(_dominantsPlanets[index]), dominantValue: _dominantsValues[index], maxDominantValue: _dominantsTotal),
+          itemBuilder: (BuildContext context, int index) => DominantTile(
+              planet: Planet(_dominantsPlanets[index]),
+              dominantValue: _dominantsValues[index],
+              maxDominantValue: _dominantsTotal),
           staggeredTileBuilder: (int index) => StaggeredTile.count(
               index == 0
                   ? 4

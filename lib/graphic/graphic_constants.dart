@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const mainColor = Color(0xFF3C87E5);
+const kMainColor = Color(0xFF4C54FF);
 const kSignColor = Color(0xFF4C54FF);
 const kBarColor = Color(0xFF4C54FF);
 const kBackgroundBarColor = Color(0x775a6370);

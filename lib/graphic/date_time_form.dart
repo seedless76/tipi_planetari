@@ -1,6 +1,9 @@
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:dominanti_planetarie/screens/loading_screen.dart';
+import 'package:dominanti_planetarie/services/city_map.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 
 class DateTimeForm extends StatefulWidget {
@@ -19,7 +22,10 @@ class _DateTimeFormState extends State<DateTimeForm> {
   DateTime userBirthDate;
   String userBirthDateString;
   DateTime userBirthTime;
+  LatLng userBirthCity;
   String userBirthTimeString;
+  String userBirthCityLong = '';
+  String userBirthCityLat = '';
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -43,8 +49,8 @@ class _DateTimeFormState extends State<DateTimeForm> {
               onSaved: (DateTime value) {
                 userBirthDate = value;
                 userBirthDateString = dateStringFormat.format(userBirthDate).toString();
-                print('Selezionata la data del $userBirthDate');
-                print('Passerò ' + userBirthDateString);
+                // print('Selezionata la data del $userBirthDate');
+                // print('Passerò ' + userBirthDateString);
               },
             ),
           ]),
@@ -70,6 +76,35 @@ class _DateTimeFormState extends State<DateTimeForm> {
             ),
           ]),
           SizedBox(height: 24),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Inserisci la tua città di nascita'),
+              FlatButton(
+                onPressed: () async {
+                  var userBirthCity = await Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return BirthCityWidget();
+                  }));
+                  setState(() {
+                    userBirthCityLong = userBirthCity.longitude.toString();
+                    userBirthCityLat = userBirthCity.latitude.toString();
+                  });
+                },
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Text('Longitudine: $userBirthCityLong'),
+                    ),
+                    Expanded(
+                      child: Text('Latitudine: $userBirthCityLat'),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 24),
           Center(
             child: RaisedButton(
               child: Text('Calcola'),
@@ -84,6 +119,8 @@ class _DateTimeFormState extends State<DateTimeForm> {
                       builder: (context) => LoadingScreen(
                         userBirthTime: userBirthTimeString,
                         userBirthDate: userBirthDateString,
+                        userBirthCityLat: userBirthCityLat,
+                        userBirthCityLong: userBirthCityLong,
                       ),
                     ),
                   );

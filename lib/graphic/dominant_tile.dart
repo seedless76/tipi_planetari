@@ -23,7 +23,6 @@ class DominantTile extends StatelessWidget {
       colour: kTileBackgroundColor,
       cardChild: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
             flex: 3,

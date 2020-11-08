@@ -6,9 +6,15 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoadingScreen extends StatefulWidget {
   static String id = 'loading_screen';
-  LoadingScreen({@required this.userBirthDate, @required this.userBirthTime});
+  LoadingScreen(
+      {@required this.userBirthDate,
+      @required this.userBirthTime,
+      @required this.userBirthCityLat,
+      @required this.userBirthCityLong});
   final String userBirthDate;
   final String userBirthTime;
+  final String userBirthCityLong;
+  final String userBirthCityLat;
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
 }
@@ -18,15 +24,18 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void initState() {
     super.initState();
     print('Sono dentro a Loading Screen: ${widget.userBirthDate} ${widget.userBirthTime}');
-    getBirthChartData(birthDate: widget.userBirthDate, birthTime: widget.userBirthTime);
+    getBirthChartData(
+        birthDate: widget.userBirthDate,
+        birthTime: widget.userBirthTime,
+        birthCityLat: widget.userBirthCityLat,
+        birthCityLong: widget.userBirthCityLong);
   }
 
   // Calculate BirthChart data
-  void getBirthChartData({String birthDate, String birthTime}) async {
-
+  void getBirthChartData({String birthDate, String birthTime, String birthCityLat, String birthCityLong}) async {
     //Creo l'istanza
     BirthChart userBirthChart =
-        BirthChart(latitude: '40.8333336', longitude: '14.116667', birthDate: birthDate, birthTime: birthTime);
+        BirthChart(latitude: birthCityLat, longitude: birthCityLong, birthDate: birthDate, birthTime: birthTime);
 
     //Creo i valori del tema e carico i dati
     var userBirthChartData = await userBirthChart.getBirthChartData();

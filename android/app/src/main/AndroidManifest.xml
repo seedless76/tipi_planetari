@@ -9,6 +9,12 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="--tipi_planetari"
         android:icon="@mipmap/ic_launcher">
+<!--        <meta-data-->
+<!--            android:name="com.google.android.geo.API_KEY"-->
+<!--            android:value="@string/maps_api_key"-->
+<!--            />-->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBAvJ5_2hnL1tfGV6cgjBB-eHwtlfKBlbw"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

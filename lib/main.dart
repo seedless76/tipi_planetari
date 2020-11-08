@@ -1,5 +1,6 @@
-import 'package:dominanti_planetarie/graphic/input_form.dart';
 import 'package:flutter/material.dart';
+
+import 'graphic/input_form.dart';
 
 void main() {
   // FlutterError.onError = (FlutterErrorDetails details) {
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark(),
       // home: WelcomeScreen(),
       home: InputForm(),
+      // home: BirthCityWidget(),
     );
   }
 }

@@ -1,24 +1,23 @@
-import 'dart:math';
-
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/cupertino.dart';
 
+//Dati per API immanuel
 const kImmanuelURL = 'https://api.immanuel.app/chart/natal';
 const kImmanuelApiKey = 'SzQN82nJLOmFX7ASAuWxpYywTFVT55Ov';
 const kImmanuelSecret = 'rX9sgmysBLVj';
 const kHouseSystem = 'Placidus';
 
-//Massimo valore della dominante per i pianeti lenti
-const kMaxSlowDominantValue = 60.0;
-
-//Massimo valore della dominante per i pianeti veloci
-const kMaxFastDominantValue = 73.0;
-
-//Massimo valore della dominante per la luna
-const kMaxMoonDominantValue = 50.0;
-
-//Massimo valore della dominante per il sole
-const kMaxSunDominantValue = 39.0;
+// //Massimo valore della dominante per i pianeti lenti
+// const kMaxSlowDominantValue = 60.0;
+//
+// //Massimo valore della dominante per i pianeti veloci
+// const kMaxFastDominantValue = 73.0;
+//
+// //Massimo valore della dominante per la luna
+// const kMaxMoonDominantValue = 50.0;
+//
+// //Massimo valore della dominante per il sole
+// const kMaxSunDominantValue = 39.0;
 
 // Ampiezza della congiunzione
 const kConjunction = 10;
@@ -36,14 +35,12 @@ const kAscInSecondDom = 4; //domicilio secondario
 const kAscInSecondDomSun = 5; //domicilio secondario per dominante solare
 const kAscInExalt = 3; //esaltazione
 
-//TODO da verificare se Plutone va gestito come caso speciale
 // Punti per Sole in
 const kSunInPrimeDom = 6; //domicilio primario
 const kSunInSecondDom = 5; //domicilio secondario
 const kSunInSecondDomSun = 6; //domicilio secondario per dominante solare
 const kSunInExalt = 4; //esaltazione
 
-//TODO da verificare se Plutone va gestito come caso speciale
 //Punti per pianeta lento in
 const kPlanSlowInPrimeDom = 3; //domicilio primario
 const kPlanSlowInSecondDom = 2; //domicilio secondario
@@ -84,64 +81,43 @@ const kStelliumInHouseOfPrime = 3; //domicilio primario
 const kStelliumInHouseOfSecond = 2; //domicilio secondario
 const kStelliumInHouseOfSecondSun = 3; //domicilio secondario in caso di sole
 const kStelliumInHouseOfExalt = 1; //esaltazione
+
+//Enumerazioni astrologiche
 enum Signs { Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, Pisces }
-enum kPlanetsNames {
-  sun,
-  moon,
-  mercury,
-  venus,
-  mars,
-  jupiter,
-  saturn,
-  uranus,
-  neptune,
-  pluto,
-}
-enum PlanetSpeed {
-  slow,
-  fast,
-}
-enum Angles {
-  asc,
-  mc,
-  desc,
-  ic,
-}
+enum PlanetName {sun, moon, mercury, venus, mars, jupiter, saturn, uranus, neptune, pluto,}
+enum PlanetSpeed {slow, fast,}
+enum BirthChartAngles {asc, mc, desc, ic,}
 
 class Planet {
   Planet(this.name);
-
-  final kPlanetsNames name;
-
+  final PlanetName name;
   bool isFast() {
     return kPlanetsFast.contains(name);
   }
-
   bool isSlow() {
     return kPlanetsSlow.contains(name);
   }
-
   String symbol() {
     return kSymbolsName[EnumToString.convertToString(name)];
   }
 }
 
 //Lista dei pianeti lenti
-final List<kPlanetsNames> kPlanetsSlow = const [
-  kPlanetsNames.jupiter,
-  kPlanetsNames.saturn,
-  kPlanetsNames.uranus,
-  kPlanetsNames.neptune,
-  kPlanetsNames.pluto,
+final List<PlanetName> kPlanetsSlow = const [
+  PlanetName.jupiter,
+  PlanetName.saturn,
+  PlanetName.uranus,
+  PlanetName.neptune,
+  PlanetName.pluto,
 ];
 
 //Lista dei pianeti veloci
-final List<kPlanetsNames> kPlanetsFast = const [
-  kPlanetsNames.sun,
-  kPlanetsNames.moon,
-  kPlanetsNames.mercury,
-  kPlanetsNames.venus,
-  kPlanetsNames.mars,
+final List<PlanetName> kPlanetsFast = const [
+  PlanetName.sun,
+  PlanetName.moon,
+  PlanetName.mercury,
+  PlanetName.venus,
+  PlanetName.mars,
 ];
 
 final List<int> kHousesName = List.generate(12, (int index) => index + 1, growable: false);
@@ -154,32 +130,34 @@ class House {
 
 class Dominant {
   Dominant({@required this.planet, @required this.value});
-
-  kPlanetsNames planet;
+  PlanetName planet;
   int value;
 }
 
 class PlanetsOfSign {
   PlanetsOfSign({@required this.primaryDom, @required this.exaltation, @required this.secondaryDom});
-
-  kPlanetsNames primaryDom;
-  kPlanetsNames exaltation;
-  kPlanetsNames secondaryDom;
+  PlanetName primaryDom;
+  PlanetName exaltation;
+  PlanetName secondaryDom;
 }
 
 final Map<Signs, PlanetsOfSign> kPlanetsOfSigns = {
-  Signs.Aries: PlanetsOfSign(primaryDom: kPlanetsNames.mars, exaltation: kPlanetsNames.sun, secondaryDom: kPlanetsNames.pluto),
-  Signs.Taurus: PlanetsOfSign(primaryDom: null, exaltation: kPlanetsNames.jupiter, secondaryDom: kPlanetsNames.venus),
-  Signs.Gemini: PlanetsOfSign(primaryDom: kPlanetsNames.mercury, exaltation: kPlanetsNames.pluto, secondaryDom: null),
-  Signs.Cancer: PlanetsOfSign(primaryDom: kPlanetsNames.moon, exaltation: kPlanetsNames.venus, secondaryDom: null),
-  Signs.Leo: PlanetsOfSign(primaryDom: null, exaltation: null, secondaryDom: kPlanetsNames.sun),
-  Signs.Virgo: PlanetsOfSign(primaryDom: null, exaltation: kPlanetsNames.uranus, secondaryDom: kPlanetsNames.mercury),
-  Signs.Libra: PlanetsOfSign(primaryDom: kPlanetsNames.venus, exaltation: kPlanetsNames.saturn, secondaryDom: null),
-  Signs.Scorpio: PlanetsOfSign(primaryDom: kPlanetsNames.pluto, exaltation: kPlanetsNames.mercury, secondaryDom: kPlanetsNames.mars),
-  Signs.Sagittarius: PlanetsOfSign(primaryDom: kPlanetsNames.jupiter, exaltation: null, secondaryDom: kPlanetsNames.neptune),
-  Signs.Capricorn: PlanetsOfSign(primaryDom: kPlanetsNames.saturn, exaltation: kPlanetsNames.mars, secondaryDom: kPlanetsNames.uranus),
-  Signs.Aquarius: PlanetsOfSign(primaryDom: kPlanetsNames.uranus, exaltation: kPlanetsNames.neptune, secondaryDom: kPlanetsNames.saturn),
-  Signs.Pisces: PlanetsOfSign(primaryDom: kPlanetsNames.neptune, exaltation: kPlanetsNames.moon, secondaryDom: kPlanetsNames.jupiter)
+  Signs.Aries: PlanetsOfSign(primaryDom: PlanetName.mars, exaltation: PlanetName.sun, secondaryDom: PlanetName.pluto),
+  Signs.Taurus: PlanetsOfSign(primaryDom: null, exaltation: PlanetName.jupiter, secondaryDom: PlanetName.venus),
+  Signs.Gemini: PlanetsOfSign(primaryDom: PlanetName.mercury, exaltation: PlanetName.pluto, secondaryDom: null),
+  Signs.Cancer: PlanetsOfSign(primaryDom: PlanetName.moon, exaltation: PlanetName.venus, secondaryDom: null),
+  Signs.Leo: PlanetsOfSign(primaryDom: null, exaltation: null, secondaryDom: PlanetName.sun),
+  Signs.Virgo: PlanetsOfSign(primaryDom: null, exaltation: PlanetName.uranus, secondaryDom: PlanetName.mercury),
+  Signs.Libra: PlanetsOfSign(primaryDom: PlanetName.venus, exaltation: PlanetName.saturn, secondaryDom: null),
+  Signs.Scorpio:
+      PlanetsOfSign(primaryDom: PlanetName.pluto, exaltation: PlanetName.mercury, secondaryDom: PlanetName.mars),
+  Signs.Sagittarius: PlanetsOfSign(primaryDom: PlanetName.jupiter, exaltation: null, secondaryDom: PlanetName.neptune),
+  Signs.Capricorn:
+      PlanetsOfSign(primaryDom: PlanetName.saturn, exaltation: PlanetName.mars, secondaryDom: PlanetName.uranus),
+  Signs.Aquarius:
+      PlanetsOfSign(primaryDom: PlanetName.uranus, exaltation: PlanetName.neptune, secondaryDom: PlanetName.saturn),
+  Signs.Pisces:
+      PlanetsOfSign(primaryDom: PlanetName.neptune, exaltation: PlanetName.moon, secondaryDom: PlanetName.jupiter)
 };
 
 const Map<String, String> kSymbolsName = {
@@ -194,15 +172,3 @@ const Map<String, String> kSymbolsName = {
   'neptune': 'lib/assets/Neptune_symbol.svg',
   'pluto': 'lib/assets/Pluto_symbol.svg',
 };
-
-const TextStyle kTitleTextStyle = TextStyle(
-  color: Color(0xffffffff),
-  fontSize: 20,
-  fontWeight: FontWeight.bold,
-);
-
-const TextStyle kInputTextStyle = TextStyle(
-  color: Color(0xff39A3FA),
-  fontSize: 20,
-  fontWeight: FontWeight.bold,
-);

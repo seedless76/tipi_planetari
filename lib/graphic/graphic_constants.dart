@@ -13,3 +13,15 @@ const kDominantNrStyle = TextStyle(
   color: Color(0xFF5a6370),
   fontWeight: FontWeight.w200,
 );
+
+const TextStyle kTitleTextStyle = TextStyle(
+  color: Color(0xffffffff),
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+);
+
+const TextStyle kInputTextStyle = TextStyle(
+  color: Color(0xff39A3FA),
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+);

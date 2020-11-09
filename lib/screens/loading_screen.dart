@@ -1,11 +1,14 @@
+import 'package:dominanti_planetarie/constants.dart';
 import 'package:dominanti_planetarie/screens/dominants_screen.dart';
 import 'package:dominanti_planetarie/services/birth_chart.dart';
-import 'package:dominanti_planetarie/services/constants.dart';
-import 'package:dominanti_planetarie/services/dominants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoadingScreen extends StatefulWidget {
+  static String id = 'loading_screen';
+  // final DateTime userBirthDate;
+  // final DateTime userBirthTime;
+  // LoadingScreen({@required this.userBirthDate, @required this.userBirthTime});
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
 }
@@ -27,12 +30,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
       birthDate: '1994-01-14',
       birthTime: '18:30',
     ).getBirthChart();
-    var dominantsData = BirthChartDominants(birthChart: birthChartData).calculate();
     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
-      return DominantScreen(
-        birthChartData: birthChartData,
-        dominantsData: dominantsData,
-      );
+      return DominantScreen(birthChartData: birthChartData);
     }), (route) => false);
   }
 

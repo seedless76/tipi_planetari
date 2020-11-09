@@ -1,19 +1,12 @@
-import 'dart:math';
-
-import 'package:dominanti_planetarie/services/constants.dart';
+import 'package:dominanti_planetarie/constants.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/cupertino.dart';
 
 double _angleDiff(double angle1, double angle2) {
-  return (angle2 - angle1).abs() <= 180
-      ? (angle2 - angle1).abs()
-      : 360 - (angle1 - angle2).abs();
+  return (angle2 - angle1).abs() <= 180 ? (angle2 - angle1).abs() : 360 - (angle1 - angle2).abs();
 }
 
-bool planetAngleConjunction(
-    {@required birthChart,
-    @required kPlanetsNames planet,
-    @required Angles angle}) {
+bool planetAngleConjunction({@required birthChart, @required PlanetName planet, @required BirthChartAngles angle}) {
   String stringPlanet = EnumToString.convertToString(planet);
   String stringAngle = EnumToString.convertToString(angle);
   double angle1 = birthChart['planets'][stringPlanet]['chartAngle'];
@@ -21,10 +14,7 @@ bool planetAngleConjunction(
   return (_angleDiff(angle1, angle2) <= kConjunction);
 }
 
-bool planetPlanetConjunction(
-    {@required birthChart,
-    @required kPlanetsNames planet1,
-    @required kPlanetsNames planet2}) {
+bool planetPlanetConjunction({@required birthChart, @required PlanetName planet1, @required PlanetName planet2}) {
   String _stringPlanet1 = EnumToString.convertToString(planet1);
   String _stringPlanet2 = EnumToString.convertToString(planet2);
   double angle1 = birthChart['planets'][_stringPlanet1]['chartAngle'];
@@ -32,17 +22,13 @@ bool planetPlanetConjunction(
   return (_angleDiff(angle1, angle2) <= kConjunction);
 }
 
-bool angleInSign(
-    {@required birthChart, @required Angles angle, @required Signs sign}) {
+bool angleInSign({@required birthChart, @required BirthChartAngles angle, @required Signs sign}) {
   String stringAngle = EnumToString.convertToString(angle);
   String stringSign = EnumToString.convertToString(sign);
   return (birthChart['angles'][stringAngle]['sign'] == stringSign);
 }
 
-bool planetInSign(
-    {@required birthChart,
-    @required kPlanetsNames planet,
-    @required Signs sign}) {
+bool planetInSign({@required birthChart, @required PlanetName planet, @required Signs sign}) {
   String _stringPlanet = EnumToString.convertToString(planet);
   String _stringSign = EnumToString.convertToString(sign);
   return (birthChart['planets'][_stringPlanet]['sign'] == _stringSign);
@@ -52,7 +38,7 @@ bool stelliumInSign({@required birthChart, @required Signs sign}) {
   String _stringSign = EnumToString.convertToString(sign);
   String _stringPlanet;
   int _planetsInSign = 0;
-  kPlanetsNames.values.forEach((planet) {
+  PlanetName.values.forEach((planet) {
     _stringPlanet = EnumToString.convertToString(planet);
     if (birthChart['planets'][_stringPlanet]['sign'] == _stringSign) {
       _planetsInSign++;
@@ -73,10 +59,7 @@ House getBirthChartHouses({@required birthChart, @required int houseNr}) {
   return _house;
 }
 
-bool planetInHouse(
-    {@required birthChart,
-    @required kPlanetsNames planet,
-    @required int houseNr}) {
+bool planetInHouse({@required birthChart, @required PlanetName planet, @required int houseNr}) {
   bool _planetInHouse;
   House _house = getBirthChartHouses(birthChart: birthChart, houseNr: houseNr);
   String _stringPlanet = EnumToString.convertToString(planet);
@@ -89,9 +72,8 @@ bool planetInHouse(
 
 bool stelliumInHouse({@required birthChart, @required int houseNr}) {
   int _planetsInSign = 0;
-  kPlanetsNames.values.forEach((planet) {
-    if (planetInHouse(
-        birthChart: birthChart, planet: planet, houseNr: houseNr)) {
+  PlanetName.values.forEach((planet) {
+    if (planetInHouse(birthChart: birthChart, planet: planet, houseNr: houseNr)) {
       // print('trovato $planet in casa $houseNr');
       _planetsInSign++;
     }

@@ -1,19 +1,21 @@
-import 'package:dominanti_planetarie/services/constants.dart';
-import 'package:flutter/material.dart';
+import 'package:dominanti_planetarie/constants.dart';
 import 'package:dominanti_planetarie/graphic/reusable_card.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'graphic_constants.dart';
 
+
 class DominantTile extends StatelessWidget {
-  DominantTile(
-      {@required this.planet,
-      @required this.dominantValue,
-      @required this.maxDominantValue});
+  DominantTile({@required this.planet, @required this.dominantValue, @required this.maxDominantValue});
 
   final Planet planet;
   final int dominantValue;
-  final double maxDominantValue;
+  final int maxDominantValue;
+
+  String dominantPercentage() {
+    return (dominantValue / maxDominantValue * 100).toStringAsFixed(1);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,15 +56,13 @@ class DominantTile extends StatelessWidget {
             ),
             child: LiquidLinearProgressIndicator(
               value: (dominantValue / maxDominantValue), // Defaults to 0.5.
-              valueColor: AlwaysStoppedAnimation(
-                  kBarColor), // Defaults to the current Theme's accentColor.
-              backgroundColor:
-                  kBackgroundBarColor, // Defaults to the current Theme's backgroundColor.
-              borderColor: kBackgroundBarColor,
+              valueColor: AlwaysStoppedAnimation(kBarColor), // Defaults to the current Theme's accentColor.
+              //backgroundColor: kBackgroundBarColor, // Defaults to the current Theme's backgroundColor.
+              borderColor: kPageBackgroundColor,
               borderWidth: 0.0,
               borderRadius: 12.0,
               direction: Axis.horizontal,
-              center: Text(''),
+              center: Text(dominantPercentage() + '%'),
             ),
           ),
         ],

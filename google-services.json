@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "687348564794",
+    "firebase_url": "https://di-che-pianeta-sei.firebaseio.com",
+    "project_id": "di-che-pianeta-sei",
+    "storage_bucket": "di-che-pianeta-sei.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687348564794:android:60b8efb28d1a560758c603",
+        "android_client_info": {
+          "package_name": "it.robertomento.dominanti_planetarie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687348564794-nhu9s4d8m9jqmjoiindjpjrsavccfuhi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "it.robertomento.dominanti_planetarie",
+            "certificate_hash": "8e3f2e663d7acc12a6eb9c18d2bb109d3fb7819a"
+          }
+        },
+        {
+          "client_id": "687348564794-1vu08a62ck7dqht71fvdnpep6jb6a3qt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaVqdVzcp6qjPXMyZVneeRlXs1A1rzyqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "687348564794-1vu08a62ck7dqht71fvdnpep6jb6a3qt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

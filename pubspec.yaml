@@ -32,6 +32,7 @@ dependencies:
   liquid_progress_indicator: ^0.3.2
   datetime_picker_formfield: ^1.0.0
   google_maps_flutter: ^1.0.6
+  google_maps_flutter_web: ^0.1.0+7
 
 
 

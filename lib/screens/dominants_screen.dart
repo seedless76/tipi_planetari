@@ -24,17 +24,17 @@ class _DominantScreenState extends State<DominantScreen> {
   @override
   void initState() {
     super.initState();
-    updateUI(widget.birthChartData, widget.dominantsData);
+    updateUI(birthChartData: widget.birthChartData, dominantsData: widget.dominantsData);
   }
 
-  void updateUI(dynamic birthChartData, dynamic dominantsData) {
+  void updateUI({dynamic birthChartData, dynamic dominantsData}) {
     setState(() {
-      print('Viene chiamato updateUI');
+      // print('Viene chiamato updateUI');
       var dominantsData = dominants(birthChartData);
       _dominantsTotal = dominantsTotalValue(dominantsData);
       _dominantsPlanets = dominantsData.keys.toList();
       _dominantsValues = dominantsData.values.toList();
-      print('Il valore totale delle dominanti è $_dominantsTotal');
+      // print('Il valore totale delle dominanti è $_dominantsTotal');
     });
   }
 

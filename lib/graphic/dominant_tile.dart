@@ -1,5 +1,7 @@
 import 'package:dominanti_planetarie/constants.dart';
 import 'package:dominanti_planetarie/graphic/reusable_card.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
@@ -21,6 +23,8 @@ class DominantTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ReusableCard(
       colour: kTileBackgroundColor,
+      //TODO chiamare la descrizione del pianeta
+      // onPress: (),
       cardChild: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -30,11 +34,18 @@ class DominantTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
-                  child: SvgPicture.asset(
-                    planet.symbol(),
-                    color: kSignColor,
-                    matchTextDirection: true,
-                  ),
+                  child: kIsWeb
+                      ? Image.network(
+                          planet.symbol(),
+                          color: kSignColor,
+                          fit: BoxFit.contain,
+                          matchTextDirection: true,
+                        )
+                      : SvgPicture.asset(
+                          planet.symbol(),
+                          color: kSignColor,
+                          matchTextDirection: true,
+                        ),
                 ),
                 Expanded(
                   child: Center(

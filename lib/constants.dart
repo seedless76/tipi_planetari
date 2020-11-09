@@ -2,7 +2,7 @@ import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/cupertino.dart';
 
 //Dati per API immanuel
-const kImmanuelURL = 'https://api.immanuel.app/chart/natal';
+const kImmanuelURL = 'https://cors-anywhere.herokuapp.com/https://api.immanuel.app/chart/natal';
 const kImmanuelApiKey = 'SzQN82nJLOmFX7ASAuWxpYywTFVT55Ov';
 const kImmanuelSecret = 'rX9sgmysBLVj';
 const kHouseSystem = 'Placidus';
@@ -84,9 +84,28 @@ const kStelliumInHouseOfExalt = 1; //esaltazione
 
 //Enumerazioni astrologiche
 enum Signs { Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, Pisces }
-enum PlanetName {sun, moon, mercury, venus, mars, jupiter, saturn, uranus, neptune, pluto,}
-enum PlanetSpeed {slow, fast,}
-enum BirthChartAngles {asc, mc, desc, ic,}
+enum PlanetName {
+  sun,
+  moon,
+  mercury,
+  venus,
+  mars,
+  jupiter,
+  saturn,
+  uranus,
+  neptune,
+  pluto,
+}
+enum PlanetSpeed {
+  slow,
+  fast,
+}
+enum BirthChartAngles {
+  asc,
+  mc,
+  desc,
+  ic,
+}
 
 class Planet {
   Planet(this.name);
@@ -94,9 +113,11 @@ class Planet {
   bool isFast() {
     return kPlanetsFast.contains(name);
   }
+
   bool isSlow() {
     return kPlanetsSlow.contains(name);
   }
+
   String symbol() {
     return kSymbolsName[EnumToString.convertToString(name)];
   }

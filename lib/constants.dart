@@ -2,22 +2,11 @@ import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/cupertino.dart';
 
 //Dati per API immanuel
-const kImmanuelURL = 'https://cors-anywhere.herokuapp.com/https://api.immanuel.app/chart/natal';
-const kImmanuelApiKey = 'SzQN82nJLOmFX7ASAuWxpYywTFVT55Ov';
-const kImmanuelSecret = 'rX9sgmysBLVj';
+const kImmanuelWebURL = 'https://cors-anywhere.herokuapp.com/https://api.immanuel.app/chart/natal';
+const kImmanuelURL = 'https://api.immanuel.app/chart/natal';
+const kImmanuelApiKey = 'vXTHt1gWPflycZl4FTU5PETH1oNpYiuR';
+const kImmanuelSecret = 'WnmifFRsO6ts';
 const kHouseSystem = 'Placidus';
-
-// //Massimo valore della dominante per i pianeti lenti
-// const kMaxSlowDominantValue = 60.0;
-//
-// //Massimo valore della dominante per i pianeti veloci
-// const kMaxFastDominantValue = 73.0;
-//
-// //Massimo valore della dominante per la luna
-// const kMaxMoonDominantValue = 50.0;
-//
-// //Massimo valore della dominante per il sole
-// const kMaxSunDominantValue = 39.0;
 
 // Ampiezza della congiunzione
 const kConjunction = 10;

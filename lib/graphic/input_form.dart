@@ -7,21 +7,26 @@ class InputForm extends StatefulWidget {
 }
 
 class _InputFormState extends State<InputForm> {
+  final time = DateTime.now();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Inserisci i tuoi dati per il calcolo del tema natale',
-          maxLines: 2,
-          softWrap: true,
+    return AspectRatio(
+      aspectRatio: 3 / 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Inserisci i tuoi dati per il calcolo del tema natale',
+            maxLines: 2,
+            softWrap: true,
+          ),
         ),
-      ),
-      body: ListView(
-        padding: EdgeInsets.all(10),
-        children: [
-          DateTimeForm(),
-        ],
+        body: ListView(
+          padding: EdgeInsets.all(10),
+          children: [
+            Text('COMPILED AT $time'),
+            DateTimeForm(),
+          ],
+        ),
       ),
     );
   }

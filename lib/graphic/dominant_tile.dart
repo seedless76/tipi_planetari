@@ -3,8 +3,8 @@ import 'package:dominanti_planetarie/graphic/reusable_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 
 import 'graphic_constants.dart';
 
@@ -29,23 +29,24 @@ class DominantTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
-                  child: kIsWeb
-                      ? Image.network(
-                          planet.symbol(),
-                          color: kSignColor,
-                          fit: BoxFit.contain,
-                          matchTextDirection: true,
-                        )
-                      : SvgPicture.asset(
-                          planet.symbol(),
-                          color: kSignColor,
-                          matchTextDirection: true,
-                        ),
+                  // child: kIsWeb
+                  //     ? Image.network(
+                  //         planet.symbol(),
+                  //         color: kSignColor,
+                  //         fit: BoxFit.contain,
+                  //         matchTextDirection: true,
+                  //       )
+                  //     : SvgPicture.asset(
+                  //         planet.symbol(),
+                  //         color: kSignColor,
+                  //         matchTextDirection: true,
+                  //       ),
+                  child: WebsafeSvg.asset(planet.symbol(), color: kSignColor),
                 ),
                 Expanded(
                   child: Center(

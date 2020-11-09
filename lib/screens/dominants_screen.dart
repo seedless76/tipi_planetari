@@ -45,7 +45,7 @@ class _DominantScreenState extends State<DominantScreen> {
       child: Scaffold(
         backgroundColor: kPageBackgroundColor,
         appBar: AppBar(
-          title: Text('Your planets dominant data'),
+          title: Text('Il tuo tipo planetario'),
           centerTitle: true,
         ),
         body: StaggeredGridView.countBuilder(

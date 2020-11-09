@@ -53,9 +53,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Loading birthchart data...', style: kTitleTextStyle),
+            Text('Calcolo i tuoi pianeti...', style: kTitleTextStyle),
             SpinKitThreeBounce(
-              color: Colors.white,
+              color: kMainColor,
               size: 100,
             ),
           ],
